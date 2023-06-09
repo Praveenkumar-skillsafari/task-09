@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="Digital-Clock" />
+    <title>Digital-Clock</title>
+    <style>
+      body {
+        display: flex;
+        background-color: black;
+        justify-content: center;
+        padding-top: 200px;
+      }
+      .outline {
+        color: antiquewhite;
+        padding: 7px 20px;
+      }
+      h1 {
+        text-align: center;
+        color: antiquewhite;
+      }
+      span {
+        font-size: 35px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Digital-Clock</h1>
+      <div class="outline">
+        <span id="hour">00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+        <span id="am-pm">AM</span>
+      </div>
+    </div>
+
+    <script>
+      let hourSpan = document.querySelector("#hour");
+      let minSpan = document.querySelector("#min");
+      let secSpan = document.querySelector("#sec");
+      let amPm = document.querySelector("#am-pm");
+
+      function timer() {
+        let dateTime = new Date();
+        let hour = dateTime.getHours();
+        let min = dateTime.getMinutes();
+        let sec = dateTime.getSeconds();
+
+        if (hour > 12) {
+          hour = hour - 12;
+          amPm.innerText = "PM";
+        }
+
+        hourSpan.innerText = padZero(hour);
+        minSpan.innerText = padZero(min);
+        secSpan.innerText = padZero(sec);
+      }
+      function padZero(num) {
+        return num < 10 ? "0" + num : num;
+      }
+
+      setInterval(timer, 500);
+    </script>
+  </body>
+</html>
